@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Smart Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { 
+            background-color: #0b0f19; 
+            color: #f8fafc; 
+            font-family: system-ui, -apple-system, sans-serif; 
+        }
+        /* Custom scrollbar for clean look */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+        ::-webkit-scrollbar-thumb { background: rgba(51, 65, 85, 0.8); border-radius: 4px; }
+    </style>
+</head>
+<body class="h-screen w-screen p-6 flex flex-col justify-between overflow-hidden">
+
+    <header class="flex justify-between items-center bg-slate-900/60 backdrop-blur-xl p-6 rounded-3xl border border-slate-800 shadow-2xl">
+        <div>
+            <h1 id="clock" class="text-5xl font-extrabold tracking-tight text-white">00:00:00</h1>
+            <p id="date" class="text-slate-400 text-lg mt-1 font-medium">Loading date...</p>
+        </div>
+        <div class="text-right">
+            <div class="text-3xl font-bold text-sky-400">72°F</div>
+            <p class="text-slate-400 font-medium">Los Angeles, CA</p>
+        </div>
+    </header>
+
+    <main class="grid grid-cols-1 md:grid-cols-3 gap-6 my-6 flex-1 overflow-hidden">
+        
+        <div class="md:col-span-2 bg-slate-900/60 backdrop-blur-xl p-6 rounded-3xl border border-slate-800 shadow-2xl flex flex-col overflow-hidden">
+            <h2 class="text-xl font-semibold text-slate-200 mb-4 flex items-center gap-2">
+                📅 Google Calendar
+            </h2>
+            <div class="flex-1 bg-slate-950/50 rounded-2xl p-3 overflow-hidden border border-slate-800/80 flex items-center justify-center">
+                <iframe src="https://calendar.google.com/calendar/embed?src=markbazikian22%40gmail.com&ctz=America%2FLos_Angeles&showTitle=0&showNav=1&showDate=1&showTabs=1&showCalendars=0&showTz=0" 
+                    style="border:0" width="100%" height="100%" frameborder="0" scrolling="no" class="rounded-xl w-full h-full"></iframe>
+            </div>
+        </div>
+
+        <div class="bg-slate-900/60 backdrop-blur-xl p-6 rounded-3xl border border-slate-800 shadow-2xl flex flex-col justify-between">
+            <div>
+                <h2 class="text-xl font-semibold text-slate-200 mb-4">💡 Daily Focus</h2>
+                <div class="bg-slate-950/50 p-4 rounded-2xl border border-slate-800/80">
+                    <p class="text-slate-300 text-lg leading-relaxed font-medium">"Fix the coffee machine, dodge the fake 4.9 ratings, and prep for In-N-Out."</p>
+                </div>
+            </div>
+            <div class="text-xs text-slate-500 text-right tracking-wider uppercase font-semibold">
+                Custom GitHub Dashboard 🚀
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString();
+            document.getElementById('date').innerText = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+
+</body>
+</html>
